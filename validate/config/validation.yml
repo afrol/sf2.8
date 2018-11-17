@@ -1,0 +1,29 @@
+Entity\AccountTrader:
+  group_sequence_provider: true
+  properties:
+    email:
+    - Email:
+        groups: [registration]
+
+    password:
+    - NotBlank:
+        groups: [registration]
+        message: 'The password cannot blank'
+    - Length:
+        min: 3
+        groups: [registration]
+
+    city:
+    - Length:
+        min: 2
+
+  getters:
+    passwordSafe:
+    - 'IsTrue':
+        message: 'The password cannot match your username'
+        groups: [Strict]
+
+    compareFullName:
+    - 'IsTrue':
+        message: 'The not match your full name'
+        groups: [login]
